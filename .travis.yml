@@ -1,0 +1,12 @@
+language: c
+cache: ccache
+os:
+  - linux
+  - osx
+dist: xenial
+osx_image: xcode10.2
+compiler:
+  - clang
+  - gcc
+script:
+  - ulimit -a
