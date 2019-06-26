@@ -10,3 +10,4 @@ compiler:
   - gcc
 script:
   - ulimit -a
+  - ulimit -n 512
