@@ -11,3 +11,8 @@ compiler:
 script:
   - ulimit -a
   - ulimit -n 512
+  - ulimit -a
+matrix:
+  exclude:
+    - os: osx
+      compiler: gcc
