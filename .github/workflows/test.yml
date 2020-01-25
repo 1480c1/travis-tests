@@ -18,7 +18,7 @@ jobs:
         run: Invoke-WebRequest -UseBasicParsing -OutFile msys2.tar.xz -Uri https://github.com/msys2/msys2-installer/releases/download/nightly-x86_64/msys2-base-x86_64-latest.tar.xz
       - name: Extract msys2
         shell: powershell
-        run: 7x x -aoa msys2.tar.xz
+        run: C:\ProgramData\chocolatey\bin\7z.exe x -aoa msys2.tar.xz
       - name: Run msys2
         run: msys64/usr/bin/bash.exe -lc 'exit'
       - name: Run test script
