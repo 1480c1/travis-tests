@@ -13,16 +13,18 @@ jobs:
     timeout-minutes: 960
     steps:
       - uses: actions/checkout@v2.0.0
-      - name: Get msys2
-        shell: powershell
-        run: Invoke-WebRequest -UseBasicParsing -OutFile msys2.tar.xz -Uri https://github.com/msys2/msys2-installer/releases/download/nightly-x86_64/msys2-base-x86_64-latest.tar.xz
-      - name: Extract msys2
-        shell: powershell
-        run: C:\ProgramData\chocolatey\bin\7z.exe x msys2.tar.xz -so | C:\ProgramData\chocolatey\bin\7z.exe x -aoa -si
-      - name: Run msys2
-        run: |
-          Get-ChildItem
-          usr/bin/bash.exe -lc 'exit'
+      #- name: Get msys2
+      #  shell: powershell
+      #  run: Invoke-WebRequest -UseBasicParsing -OutFile msys2.tar.xz -Uri https://github.com/msys2/msys2-installer/releases/download/nightly-x86_64/msys2-base-x86_64-latest.tar.xz
+      #- name: Extract msys2
+      #  shell: cmd
+      #  run: |
+      #    C:\ProgramData\chocolatey\bin\7z.exe x msys2.tar.xz
+      #    C:\ProgramData\chocolatey\bin\7z.exe x msys2.tar
+      #- name: Run msys2
+      #  run: |
+      #    Get-ChildItem
+      #    msys64/usr/bin/bash.exe -lc 'exit'
       - name: Run test script
-        shell: usr/bin/bash.exe --noprofile --norc -eo pipefail{0}
+        shell: bash
         run: ./test.sh
