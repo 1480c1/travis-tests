@@ -1,0 +1,43 @@
+name: CI Workflow
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.repository_owner }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - "Config/**"
+      - "*.patch"
+      - "third_party/**"
+      - "test/e2e_test/test_vector_list.txt"
+      - "test/vectors/smoking_test.cfg"
+      - "test/vectors/video_src.cfg"
+      - "*.png"
+      - "*.PNG"
+      - "*.pdf"
+  pull_request:
+    paths-ignore:
+      - "Config/**"
+      - "*.patch"
+      - "third_party/**"
+      - "test/e2e_test/test_vector_list.txt"
+      - "test/vectors/smoking_test.cfg"
+      - "test/vectors/video_src.cfg"
+      - "*.png"
+      - "*.PNG"
+      - "*.pdf"
+
+jobs:
+  basic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
